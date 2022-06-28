@@ -1,3 +1,5 @@
+Гугл таблица находится по адресу: https://docs.google.com/spreadsheets/d/17X9axZIOkgpkthTBh6RiDkPhgTmdYuEdq9eiC3wnScs/edit#gid=0
+
 Описание работы скрипта в рамках тестового задания Notion:
 
 1) Для начала нужно скопировать репозиторий git clone <ссылка на репозиторий>
