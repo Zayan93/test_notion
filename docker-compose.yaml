@@ -1,0 +1,51 @@
+# версия docker-compose
+version: '3.8'
+
+# имена и описания контейнеров, которые должны быть развёрнуты
+services:
+  # описание контейнера db
+  db:
+    # образ, из которого должен быть запущен контейнер
+    image: postgres:13.0
+    # volume и связанная с ним директория в контейнере
+    environment:
+      - POSTGRES_DB=ggl_database
+      - POSTGRES_PASSWORD=123qwe
+      - POSTGRES_USER=app
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+      - ./config/db/ggl_db.sql:/docker-entrypoint-initdb.d/init.sql
+    # адрес файла, где хранятся переменные окружения
+    env_file:
+      - ./.env
+  web:
+    build:
+      context: .
+      dockerfile: config/gglsheets/Dockerfile
+    restart: always
+    ports:
+     - "8000:8000"
+    # "зависит от", 
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+  
+  ggl_to_post:
+    build:
+      context: .
+      dockerfile: config/ggl_to_post/Dockerfile
+    container_name: ggl_to_post
+    working_dir: /opt/ggl/
+    volumes:
+      - ./ggl_to_psql:/opt/ggl/
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - web
+    command: python main.py
+
+volumes:
+  db_data:
