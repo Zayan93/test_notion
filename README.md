@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS content.sheets_content (
     order_number INT,
     price_usd FLOAT,
     price_rub FLOAT,
-    delivery_date DATE,
+    delivery_date DATE
 );
 
 8) Можно переходить в директорию gglsheets и выполнить для начала миграции: python manage.py migrate --fake
