@@ -1,5 +1,7 @@
-FROM python:3.7-slim
+FROM python:3.9.6-alpine
 WORKDIR /opt/ggl
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
 #RUN apk --no-cache add \
 #    icu-dev \

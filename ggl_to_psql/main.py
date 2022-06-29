@@ -46,11 +46,11 @@ def load_data(pg_conn: _connection):
 
 if __name__ == '__main__':
     dsl = {
-        'dbname': os.environ.get('DB_NAME'),
-        'user': os.environ.get('DB_USER'),
-        'password': os.environ.get('DB_PASSWORD'),
-        'host': os.environ.get('HOST'),
-        'port': os.environ.get('PORT')
+        'dbname': os.environ.get('POSTGRES_DB'),
+        'user': os.environ.get('POSTGRES_USER'),
+        'password': os.environ.get('POSTGRES_PASSWORD'),
+        'host': os.environ.get('POSTGRES_HOST'),
+        'port': os.environ.get('POSTGRES_PORT'),
     }
     with psycopg2.connect(
         **dsl, cursor_factory=DictCursor
